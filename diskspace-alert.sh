@@ -1,7 +1,7 @@
 #!/bin/bash 
-	# This script is for monitering 
-	# server partition and send mail
-	# alerts if reached threshold
+# This script is for monitering 
+# server partition and send mail
+# alerts if reached threshold
 # written by Suhas U Kekuda 
 
 #Email address
@@ -10,7 +10,6 @@ SENDER_PASSWORD="***********"
 
 #SMPT details 
 RELAY_SERVER="smtp://smtp.gmail.com:587"
-
 
 #Recipient address
 RECIPIENT_ADDRESS="suhaskekuda@gmail.com"
@@ -25,7 +24,6 @@ declare -a DIRECTORIES=("/" "/boot")
 THRESHOLD_RED="80"
 THRESHOLD_AMBER="60"
 
-
 SEND_MAIL(){
 	curl --connect-timeout 15 -v --insecure ${RELAY_SERVER} -u "${SENDER_USERNAME}:${SENDER_PASSWORD}" --mail-from ${SENDER_USERNAME} --mail-rcpt ${RECIPIENT_ADDRESS} -T ${MAIL_CONTENT} --ssl	>> /dev/null 2>&1
 	
@@ -34,7 +32,6 @@ SEND_MAIL(){
 		echo "Mail sent successfully to ${RECIPIENT_ADDRESS}"	
 	fi
 }
-
 
 VALIDATE_USAGE(){
 	> ${MAIL_CONTENT}
@@ -84,14 +81,13 @@ VALIDATE_USAGE(){
 	
 }
 
-
 SHOW_HELP() {
 	cat <<_EOF
 		Usage  : $0 <options>	     
 	Options:
 	--validate   for running partition validation
 _EOF
-	}
+}
 
 
 MAIN(){
